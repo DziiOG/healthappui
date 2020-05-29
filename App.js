@@ -1,36 +1,46 @@
-import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react'
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-const instructions = Platform.select({
-  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
-});
+import Home from './screens/home';
+import Mission from './screens/mission';
+import { Image } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome to React Native!</Text>
-      <Text style={styles.instructions}>To get started, edit App.js</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
-    </View>
-  );
+const Stack = createStackNavigator();
+
+export default class App extends React.Component {
+  render(){
+    return(
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home}
+          options = {{
+            headerTransparent: true,
+            headerLeft: () => (
+              <Image source={require('./assets/drawericon.png')}></Image>
+            ),
+            title: '',
+            headerRight: () => (
+              <Image source={require('./assets/user.png')} style={{marginHorizontal: 20, marginTop: 40}}></Image>
+            )
+          }}
+          ></Stack.Screen>
+          <Stack.Screen name="Mission" component={Mission}
+             options = {{
+            headerTransparent: true,
+            headerLeft: () => (
+              <Image source={require('./assets/blackmenu.png')} style={{marginHorizontal: 20, marginTop: 40}}></Image>
+            ),
+            title: '',
+            headerRight: () => (
+              <Image source={require('./assets/user.png')} style={{marginHorizontal: 35, marginTop: 40}}></Image>
+            )
+          }}
+          ></Stack.Screen>
+        </Stack.Navigator>
+      </NavigationContainer>
+    )
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+
