@@ -19,7 +19,7 @@ export default class Home extends Component {
             <View style={styles.containerone}>
                 <View style={styles.boxone}></View>
                 <View style={styles.boxtwo}>
-                    <Text style={styles.name}>Hi, Anna</Text>
+                    <Text style={styles.name}>Hi, Ann</Text>
                     <Text style={styles.subtitle}>Here is your health</Text>
                 </View>
                 <View style={styles.boxthree}>
